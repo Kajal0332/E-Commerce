@@ -1,0 +1,39 @@
+* About css  */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+.about-container {
+    padding: 50px 0;
+}
+.stats-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+.highlighted {
+    background: red;
+    color: white;
+}
+.team-member {
+    text-align: center;
+    padding: 20px;
+}
+.team-member img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+.team-member h5 {
+    margin-top: 10px;
+}
+.cutomerSupport i{
+    font-size: 50px;
+    border: 10px solid rgb(94, 92, 92);
+    padding: 10px;
+    border-radius: 50%;
+  }

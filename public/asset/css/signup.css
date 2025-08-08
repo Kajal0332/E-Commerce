@@ -1,0 +1,38 @@
+  /* signup css  */
+  .signup-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+  }
+
+  .signup-box {
+      padding: 40px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .signup-box input {
+      border-radius: 5px;
+  }
+
+  .signup-box button {
+      border-radius: 5px;
+  }
+
+  .google-btn {
+      background: white;
+      border: 1px solid #ddd;
+      color: #333;
+  }
+
+  .google-btn:hover {
+      background: #f8f9fa;
+  }
+
+  .signupBtn:hover {
+      background-color: #DC3545;
+      color: white;
+      border: none;
+  }

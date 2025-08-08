@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* navbar  */
+img{
+  cursor: pointer;
+}
+.navLoginBtn:hover {
+  color: white;
+}
+
+.carousel {
+  height: 70vh;
+  /* 70% of viewport height */
+}
+
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #000;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+}
+
+.carousel {
+  height: 70vh;
+  /* 70% of viewport height */
+}
+
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: #000;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+}
+
+
+body,
+html {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar{
+  padding-left: 110px;
+  padding-right: 110px;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+}
+
+/* <============ Media query ==============> */
+
+@media only screen and (max-width: 800px) {
+  #icons{
+    display: none;
+  }
+  #loginbtn{
+    margin-top: 10px;
+  }
+}
+
+.carousel {
+  width: 100%;
+  height: 73vh;
+  /* 70% of the viewport height */
+}
+
+.carousel-item {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.main-music-btn {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+}
+
+/* new arrival  */
+.slideBodeRed {
+  border-left: 10px solid red;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+.add-to-cart:hover {
+  background-color: #dc3545;
+}
+
+
+/* carousel-caption-first front of slider */
+
+.card-img-top {
+
+  /* margin: auto; */
+
+  height: 200px;
+  /* Fixed height */
+  /* object-fit: cover; */
+  /* Ensures the image covers the area without distortion */
+}
+
+.carousel-caption-first {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-caption-first h3 {
+  font-size: 8rem;
+}
+
+/* carousel-caption-second front of slider */
+.carousel-caption-second {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-caption-second h3 {
+  font-size: 8rem;
+}
+
+/* carousel-caption-third slider font */
+.carousel-caption-third {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-caption-third h3 {
+  font-size: 8rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+/* product like button  */
+.likeItem {
+  position: relative;
+}
+
+.likebackground {
+  position: absolute;
+  background-color: #e7e7e7;
+  border-bottom-right-radius: 15px;
+}
+
+.likeBtn {
+
+  color: #dc3545;
+  /* Red color */
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.likeBtn:hover {
+  transform: scale(1.2);
+  /* Enlarge the heart icon */
+  color: #ff0000;
+  /* Darker red color when hovered */
+}
+
+.product-card-section {
+  margin-top: 30px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.new-badge {
+  background: green;
+}
+
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.heart-icon:hover {
+  color: red;
+}
+
+.product-card button {
+  width: 100%;
+  border: none;
+  padding: 8px;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.wishlist-card button:hover {
+  background: red;
+}
+
+.rating {
+  color: #f8b400;
+}
+
+
+/* carousel-caption-forth front of slider */
+.carousel-caption-forth {
+  position: absolute;
+  top: 50%;
+  left: 39%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-caption-forth h3 {
+  font-size: 8rem;
+}
+
+/* seccond navbar for category for women clothes .category-navbar { */
+.women-cloths-category img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: aqua;
+}
+
+
+.brand-item {
+  display: inline-block;
+  margin: 0 30px;
+  /* Spacing between brands */
+  text-align: center;
+}
+
+.brand-item i {
+  font-size: 2rem;
+  /* Icon size */
+  color: #333;
+  /* Icon color */
+}
+
+.brand-item span {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+
+/* discount of 10%  */
+.feshionSuites {
+  position: relative;
+  z-index: 1;
+}
+
+.feshionSuites .feshionSuites-discount {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  top: 40%;
+  left: 22%;
+}
+
+.feshionSuites-discount>h2 {
+  font-size: 3.5rem;
+}
+
+.feshionSuites-discount .discountEmail {
+  display: flex;
+  margin: 20px auto 0;
+}
+
+/* bags  */
+.cardBodyHeading {
+  text-decoration: none;
+  color: black;
+}
+
+.cardBodyHeading:hover {
+  text-decoration: underline;
+}
+
+/* starts review  */
+.stars {
+  display: flex;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 30px;
+  color: lightgray;
+}
+
+.star.selected {
+  color: gold;
+}
+
+
+
+
+/* Social Links */
+.logo {
+  width: 30px;
+  margin: 8px;
+  border-radius: 50%;
+}
+
+.card .fa-solid:hover {
+  color: tomato;
+}
+
+
+
+/* footer css  */
+.footer {
+  background: #111;
+  color: white;
+  padding: 40px 0 0;
+  /* text-align: center; */
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #f8f9fa;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  color: white;
+  font-size: 18px;
+}
+
+.footer .copyright {
+  color: #787575;
+}
