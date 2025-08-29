@@ -56,7 +56,7 @@
                     </li>
                     <li class="nav-item ps-3 me-3">
                         <div class="d-flex">
-                            <a href="wishlist.php" class="btn btn-outline-dark position-relative">
+                            <a href="/wishlist" class="btn btn-outline-dark position-relative">
                                 <i class="fas fa-heart like-icon"></i>
                                 <span id="cart-count"
                                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>

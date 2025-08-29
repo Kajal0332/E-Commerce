@@ -224,6 +224,15 @@ html {
 .new-badge {
   background: green;
 }
+.product-card .heart-icon {
+    color: #ccc; /* Initial color */
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.product-card .heart-icon.active {
+    color: #ff4d4d; /* Active/wishlisted color */
+}
 
 .heart-icon {
   position: absolute;
