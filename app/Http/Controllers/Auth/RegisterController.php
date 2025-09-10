@@ -22,9 +22,12 @@ class RegisterController extends Controller
         $request->validate([
             'fullName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // 'unique:users' ensures email is not already taken
-            'phoneNumber' => ['required', 'string', 'max:20'], // Adjust max length as needed
+            'phoneNumber' => ['required', 'string', 'max:10'], // Adjust max length as needed
             'password' => ['required', 'string', 'min:8', 'confirmed'], // 'confirmed' automatically checks for password_confirmation
         ]);
+
+        // 🔍 Debugging here
+        // dd($request->all());
 
         // 2. Hash the password and create the user
         $user = User::create([
@@ -35,10 +38,10 @@ class RegisterController extends Controller
         ]);
 
         // 3. Log the user in (optional, but common after registration)
-        Auth::login($user);
+        // Auth::login($user);
 
         // 4. Redirect the user to a dashboard or home page
-        return redirect()->route('home')->with('success', 'Account created successfully!');
+        return redirect()->route('login')->with('success', 'Account created successfully!');
         // Or redirect to a specific dashboard route: return redirect('/dashboard');
     }
 }

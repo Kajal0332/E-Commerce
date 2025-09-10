@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Important for authentication
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 
 class LoginController extends Controller
 {
+
     /**
      * Handle an incoming authentication request.
      *
@@ -34,12 +37,14 @@ class LoginController extends Controller
 
         // 2. Attempt to log the user in
         // Auth::attempt() returns true on success, false on failure
-        if (Auth::attempt($credentials)) {
-            // Regeneration of the session ID is important for security (session fixation)
-            $request->session()->regenerate();
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
 
-            // Redirect to the intended page or home route
-            return redirect()->intended(route('home'))->with('success', 'Logged in successfully!');
+            if ($user->role === 'admin') {
+                return redirect()->route('adminDeshboard');
+            } else {
+                return redirect()->route('home'); 
+            }
         }
 
         // 3. If authentication fails, redirect back with an error

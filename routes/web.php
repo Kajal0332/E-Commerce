@@ -1,28 +1,46 @@
 <?php
 // Existing routes...
 
+use App\Http\Controllers\ContactController; // Import your ContactController
+use App\Http\Controllers\Admin\adminDeshboardController; // Import your controller
+use App\Http\Controllers\Admin\AdProductController; // Import your controller
 use App\Http\Controllers\Auth\RegisterController; // Import your controller
 use App\Http\Controllers\Auth\LoginController; // Import your LoginController
 use App\Http\Controllers\UserProfileController; // Create this controller
 use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth; 
+
 
 // Define admin dashboard
-Route::get('/admin/products', function () {
-    return view('admin.products');
-});
 
-// Define the 'home' route
+/**
+ * This route handles the display of the home page.
+*
+* @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+*
+* @throws \Illuminate\View\ViewException
+*/
 Route::get('/', function () {
     return view('home'); // This will try to load resources/views/home.blade.php
 })->name('home');
+
+
+// admin deshboard page controller 
+Route::get('/adminDeshboard', [adminDeshboardController::class, 'index'])->name('adminDeshboard');
+
+// admin product add page controller
+Route::get('/addProduct', [AdProductController::class, 'index'])->name('addProduct');
+
+
 
 // Define the 'about' route
 Route::get('/about', function () {
     return view('about'); // This will try to load resources/views/home.blade.php
 })->name('about');
 
-// Define the 'home' route
+
+// Define the 'contact' route
 Route::get('/contact', function () {
     return view('contact'); // This will try to load resources/views/home.blade.php
 })->name('contact');
@@ -54,14 +72,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [UserProfileController::class, 'show'])->name('profile.show');
     // Add more profile-related routes here, e.g., for editing:
     // Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
-    // Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    // 
+    Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
 });
 
 // routes/web.php
 
-use App\Http\Controllers\ContactController; // Import your ContactController
-
-// ... (your existing routes like /contact for GET, /home, /login, /signup, etc.)
 
 // Route to display the contact form (if you don't have it already)
 Route::get('/contact', function () {
