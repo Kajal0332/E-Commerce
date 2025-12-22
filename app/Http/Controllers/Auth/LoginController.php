@@ -3,69 +3,38 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Important for authentication
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
 
     /**
-     * Handle an incoming authentication request.
+     * Where to redirect users after login.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @var string
      */
-    public function authenticate(Request $request)
-    {
-        // 1. Validate the incoming request data
-        $credentials = $request->validate([
-            'email' => ['required', 'string', 'email'], // Use 'email' for Laravel's default Auth
-            'password' => ['required', 'string'],
-        ]);
-
-        // If you want to allow login with 'username' instead of 'email', you'd do:
-        // $credentials = $request->validate([
-        //     'username' => ['required', 'string'],
-        //     'password' => ['required', 'string'],
-        // ]);
-        // And then below, you might need to find the user by username first
-        // Or configure your User model to use 'username' as Auth identifier
-        // public function username() { return 'username'; } in LoginController
-        // For simplicity, stick to 'email' if your users table has it.
-
-        // 2. Attempt to log the user in
-        // Auth::attempt() returns true on success, false on failure
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $user = Auth::user();
-
-            if ($user->role === 'admin') {
-                return redirect()->route('adminDeshboard');
-            } else {
-                return redirect()->route('home'); 
-            }
-        }
-
-        // 3. If authentication fails, redirect back with an error
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email'); // Keep the email input filled
-    }
+    protected $redirectTo = 'adminDeshboard';
 
     /**
-     * Log the user out of the application.
+     * Create a new controller instance.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
-    public function logout(Request $request)
+    public function __construct()
     {
-        Auth::logout(); // Logs out the currently authenticated user
-
-        $request->session()->invalidate(); // Invalidates the current session
-        $request->session()->regenerateToken(); // Regenerates the CSRF token
-
-        return redirect('/login')->with('success', 'You have been logged out.'); // Redirect to login page
+        $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
     }
 }

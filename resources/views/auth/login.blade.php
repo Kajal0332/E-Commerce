@@ -14,8 +14,8 @@
             <div class="signup-box">
                 <h3 class="my-2">Login your account</h3>
                 <p class="mb-5">Enter your username ans password details below</p>
-                <form action="{{ route('login.authenticate') }}" method="POST">
-                    @csrf {{-- Add this for security! --}}
+                <form action="{{ route('login') }}" method="POST">
+                    @csrf
 
                     {{-- Display general login errors (e.g., invalid credentials) --}}
                     @if ($errors->has('email') || $errors->has('password'))

@@ -33,7 +33,19 @@
 <div class="container product-card-section">
     <h2 class="fw-bold slideBodeRed my-5">Explore Our Product</h2>
     <div class="row mt-4">
+        @foreach ($product as $products)
         <div class="col-md-3">
+            <a href="productDetail/{{ $products['id'] }}" class="text-decoration-none text-dark">
+            <div class="product-card">
+                <i class="fa-solid fa-heart heart-icon"></i>
+                <img src="{{ $products->image }}" alt="Gucci duffle bag">
+                <h5>{{ $products->product_name }}</h5>
+                <p><strong>{{ $products->price }}</strong></p>
+                <!-- <button class="add-to-cart">Add To Cart</button> -->
+            </div></a>
+        </div>
+        @endforeach
+        <!-- <div class="col-md-3">
             <div class="product-card">
                 <span class="discount-badge">-35%</span>
                 <div class="inline">
@@ -105,9 +117,9 @@
                     Add To Cart
                 </button>
             </div>
-        </div>
+        </div> -->
     </div>
-    <div class="row mt-4">
+    <!-- <div class="row mt-4">
         <div class="col-md-3">
             <div class="product-card">
                 <span class="discount-badge">-35%</span>
@@ -145,7 +157,7 @@
                 <button class="add-to-cart">Add To Cart</button>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="button text-center">
         <a href=""><button class="btn btn-danger my-5 px-5">View more</button></a>
     </div>

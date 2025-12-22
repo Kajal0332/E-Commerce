@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@extends('layouts.app')
-
 @section('content')
 <div class="container my-5 signup-container">
     <div class="row">
@@ -13,7 +11,7 @@
             <div class="signup-box">
                 <h3>Create an account</h3>
                 <p>Enter your details below</p>
-                <form action="{{ route('register.store') }}" method='POST'>
+                <form action="{{ route('register') }}" method='POST'>
                     @csrf
                     <!-- /* This code snippet is a part of a registration form in a Laravel application.
                     Here's a breakdown of what each part is doing: */ -->

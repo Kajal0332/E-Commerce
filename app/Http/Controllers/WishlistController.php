@@ -15,4 +15,6 @@ class WishlistController extends Controller
     {
         return view('wishlist');
     }
+
+    
 }

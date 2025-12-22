@@ -3,45 +3,84 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User; // Make sure you have a User model
+use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
     /**
-     * Handle an incoming registration request.
+     * Where to redirect users after registration.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @var string
      */
-    public function store(Request $request)
+    protected $redirectTo = '/home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        // 1. Validate the incoming request data
-        $request->validate([
-            'fullName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // 'unique:users' ensures email is not already taken
-            'phoneNumber' => ['required', 'string', 'max:10'], // Adjust max length as needed
-            'password' => ['required', 'string', 'min:8', 'confirmed'], // 'confirmed' automatically checks for password_confirmation
+        $this->middleware('guest');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
 
-        // 🔍 Debugging here
-        // dd($request->all());
+    }
+    protected function registered(Request $request, $user)
+    {
+        // 1. Log the user out immediately (since RegistersUsers logs them in automatically)
+        $this->guard()->logout();
 
-        // 2. Hash the password and create the user
-        $user = User::create([
-            'name' => $request->fullName, // Assuming your users table has a 'name' column
-            'email' => $request->email,
-            'phone_number' => $request->phoneNumber, // Assuming your users table has a 'phone_number' column
-            'password' => Hash::make($request->password), // Hash the password!
-        ]);
+        // 2. Clear their session data
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        // 3. Log the user in (optional, but common after registration)
-        // Auth::login($user);
-
-        // 4. Redirect the user to a dashboard or home page
-        return redirect()->route('login')->with('success', 'Account created successfully!');
-        // Or redirect to a specific dashboard route: return redirect('/dashboard');
+        // 3. Redirect to the login page with a success flash message
+        return redirect()->route('login')->with('status', 'Registration successful! Please log in to continue.');
     }
 }

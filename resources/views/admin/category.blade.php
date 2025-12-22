@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Products</li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Categories</li>
             </ol>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -121,85 +121,78 @@
 </nav>
 @endsection
 @section('endNavbarContent')
-<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#productModal" id="addNewProductBtn">
-    Add New Product
+<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#categoryModal" id="addNewCategoryBtn">
+    Add New Category
 </button>
-<!-- Products Table -->
+<!-- Category Table -->
 <div class="table-responsive">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Price</th>
+                <th>Category Name</th>
+                <th>slug</th>
                 <th>Image</th>
-                <th>Category</th>
-                <th>Description</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
-        <tbody id="productTableBody">
-            @foreach($products as $product)
+        <tbody id="categoryTableBody">
+            @foreach ($categories as $category)
             <tr>
-                <td>{{ $product->product_name }}</td>
-                <td>{{ $product->price }}</td>
+                <td scope="row">{{ $category->id }}</td>
                 <td>
-                    <img src="{{ $product->image }}" alt="Image" style="width: 50px; height: 50px; object-fit: cover;">
+                  <img src="{{ asset('images/categories') }}/{{ $category->image }}" class="brand_image" alt="{{ $category->name }}">
+                  <a href="#" class="text-decoration-none">{{ $category->name }}</a>
                 </td>
-                <td>{{ $product->category }}</td>
-                <td class="text-wrap" style="max-width: 200px">{{ $product->description }}</td>
-                <td class="text-center">
-                    <button class="btn btn-warning btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm">Delete</button>
+                <td>{{ $category->slug }}</td>
+                <td><a href="#" target="_blank" class="text-decoration-none">0</a></td>
+                <td>
+                  <div class="d-flex m-3">
+                    <a href="{{ route('admin.edit.category', ['id' => $category->id]) }}" class="btn btn-sm btn-warning m-3 text-light"><i class="fa-solid fa-edit"></i>Edit</a>
+                    <form action="{{ route('admin.delete.category', ['id' => $category->id]) }}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" class="btn btn-sm btn-danger m-3 delete"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </form>
+                  </div>
                 </td>
-            </tr>
+              </tr>
             @endforeach
             <!-- Products will be dynamically added here -->
         </tbody>
     </table>
+    <div class="divider"></div>
+      <div class="flex items-center justify-between flex-wrap gap10 mt-4 brand-pagination">
+        {{ $categories->links('pagination::bootstrap-5') }}
+      </div>
 </div>
 
 </div>
 <!-- Modal Structure -->
-<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Add New Product</h5>
+                <h5 class="modal-title" id="categoryModalLabel">Add New Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- Product Form -->
-                <form id="productForm" action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
+                <form id="categoryForm" action="{{ route('addCategory.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control border" id="productName" name="product_name" required>
+                        <label for="categoryName" class="form-label">Category Name</label>
+                        <input type="text" class="form-control border" id="categoryName" name="category_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control border" id="productPrice" name="price" required>
+                        <label for="categorySlug" class="form-label">Slug</label>
+                        <input type="text" class="form-control border" id="categorySlug" name="slug" required readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="productImg" class="form-label">Image URL</label>
-                        <input type="url" class="form-control border" id="productImg" name="image" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productCategory" class="form-label">Category</label>
-                        <select class="form-select" id="productCategory" name="category" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Electronics</option>
-                            <option>Apparel</option>
-                            <option>Books</option>
-                            <option>Home & Kitchen</option>
-                            <option>Indian Suit</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="productDescription" class="form-label">Description</label>
-                        <textarea class="form-control border" id="productDescription" name="description" rows="3"></textarea>
+                        <label for="categoryImg" class="form-label">Image URL</label>
+                        <input type="url" class="form-control border" id="categoryImg" name="image" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Save Product</button>
+                    <button type="submit" class="btn btn-primary w-100">Save Category</button>
                 </form>
             </div>
         </div>
