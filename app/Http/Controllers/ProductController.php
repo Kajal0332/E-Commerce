@@ -21,4 +21,10 @@ class ProductController extends Controller
         return view('searchPage',['product'=>$data]);
 
     }
+    Public function cartPage(Request $req){
+        return "Hello";
+        // $data= Product::where('product_name', 'like', '%'.$req->input('query'). '%')->get();
+        // return view('searchPage',['product'=>$data]);
+
+    }
 }

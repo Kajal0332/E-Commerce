@@ -65,6 +65,10 @@ Route::get('productDetail/{id}', [ProductController::class, 'productDetail'])->n
 // Add this to your routes/web.php of Search result view on the brower
 Route::get('searchPage', [ProductController::class, 'search'])->name('searchPage');
 
+// Add this to your routes/web.php of Search result view on the brower
+Route::get('add_to_cart', [ProductController::class, 'cartPage']);
+Route::post('add_to_cart', [ProductController::class, 'cartPage'])->name('cartPage');
+
 
 
 // Route to show the signup form (you already have this or similar)

@@ -28,7 +28,11 @@
             </div>
 
             <div class="d-grid gap-2">
-                <button class="btn btn-dark btn-lg py-3">Add to Cart</button>
+                <form action="/add_to_cart" method="POST">
+                    <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+                    @csrf
+                    <button class="btn btn-dark btn-lg py-3 w-100">Add to Cart</button>
+                </form>
                 <button class="btn btn-outline-secondary btn-lg">Add to Wishlist</button>
                 <button class="btn btn-outline-danger btn-lg">Buy Now</button>
             </div>
