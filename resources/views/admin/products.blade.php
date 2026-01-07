@@ -124,6 +124,20 @@
 <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#productModal" id="addNewProductBtn">
     Add New Product
 </button>
+
+@if(session('success'))
+<div class="alert alert-success mt-2">{{ session('success') }}</div>
+@endif
+@if($errors->any())
+<div class="alert alert-danger mt-2">
+    <ul class="mb-0">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <!-- Products Table -->
 <div class="table-responsive">
     <table class="table table-bordered table-striped">
@@ -143,13 +157,21 @@
                 <td>{{ $product->product_name }}</td>
                 <td>{{ $product->price }}</td>
                 <td>
-                    <img src="{{ $product->image }}" alt="Image" style="width: 50px; height: 50px; object-fit: cover;">
+                    @php
+                        $imgSrc = filter_var($product->image, FILTER_VALIDATE_URL) ? $product->image : ($product->image ? asset('storage/'.$product->image) : asset('images/placeholder.png'));
+                    @endphp
+                    <img src="{{ $imgSrc }}" alt="Image" style="width: 50px; height: 50px; object-fit: cover;">
                 </td>
                 <td>{{ $product->category }}</td>
                 <td class="text-wrap" style="max-width: 200px">{{ $product->description }}</td>
                 <td class="text-center">
-                    <button class="btn btn-warning btn-sm">Edit</button>
-                    <button class="btn btn-danger btn-sm">Delete</button>
+
+                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -169,34 +191,42 @@
             </div>
             <div class="modal-body">
                 <!-- Product Form -->
-                <form id="productForm" action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
+                <form id="productForm" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('post')
                     <div class="mb-3">
                         <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control border" id="productName" name="product_name" required>
+                        <input type="text" class="form-control border" id="productName" name="product_name" value="{{ old('product_name') }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control border" id="productPrice" name="price" required>
+                        <input type="number" step="0.01" class="form-control border" id="productPrice" name="price" value="{{ old('price') }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="productImg" class="form-label">Image URL</label>
-                        <input type="url" class="form-control border" id="productImg" name="image" required>
+                        <label class="form-label">Product Image</label>
+                        <div class="mb-2">
+                            <input type="file" class="form-control border-3" id="productImageFile" name="image_file" accept="image/*">
+                            <small class="text-muted">Upload an image file (preferred).</small>
+                        </div>
+                        <div>
+                            <input type="url" class="form-control border" id="productImageUrl" name="image_url" placeholder="Or provide an image URL" value="{{ old('image_url') }}">
+                            <small class="text-muted">Or provide an image URL.</small>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="productCategory" class="form-label">Category</label>
-                        <select class="form-select" id="productCategory" name="category" required>
+                        <select class="form-select border" id="productCategory" name="category" required>
                             <option selected disabled value="">Choose...</option>
-                            <option>Electronics</option>
-                            <option>Apparel</option>
-                            <option>Books</option>
-                            <option>Home & Kitchen</option>
-                            <option>Indian Suit</option>
+                            <option {{ old('category') == 'Electronics' ? 'selected' : '' }}>Electronics</option>
+                            <option {{ old('category') == 'Apparel' ? 'selected' : '' }}>Apparel</option>
+                            <option {{ old('category') == 'Books' ? 'selected' : '' }}>Books</option>
+                            <option {{ old('category') == 'Home & Kitchen' ? 'selected' : '' }}>Home & Kitchen</option>
+                            <option {{ old('category') == 'Indian Suit' ? 'selected' : '' }}>Indian Suit</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="productDescription" class="form-label">Description</label>
-                        <textarea class="form-control border" id="productDescription" name="description" rows="3"></textarea>
+                        <label for="productDescription" class="form-label border">Description</label>
+                        <textarea class="form-control border" id="productDescription" name="description" rows="3">{{ old('description') }}</textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">Save Product</button>

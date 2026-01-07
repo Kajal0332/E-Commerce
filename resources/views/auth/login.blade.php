@@ -36,8 +36,20 @@
                     @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <div class="input_container d-flex m-3">
+                        <div class="input_container d-flex justify-content-between w-100">
+                            <button type="submit" class="btn btn-danger">
+                                {{ __('Login') }}
+                            </button>
 
-                    <button type="submit" class="btn btn-dark w-100 mb-3">Login Account</button>
+                            @if (Route::has('password.request'))
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-dark w-100 mb-3">Login Account</button> -->
                     <button type="button" class="btn google-btn w-100">
                         <i class="fab fa-google"></i> Sign up with Google
                     </button>

@@ -1,15 +1,30 @@
 <!-- Navbar -->
+ <?php
+    use App\Models\Cart;
+    use App\Models\Wishlist;
+    use Illuminate\Support\Facades\Auth;
+    
+    $total = 0;
+    if (Auth::check()) {
+        // reflect total quantity in cart (sum of quantities)
+        $total = Cart::where('user_id', Auth::id())->sum('quantity');
+    }
+    $totalWishlist = 0;
+    if (Auth::check()) {
+        $totalWishlist = Wishlist::where('user_id', Auth::id())->count();
+    }
+?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index">Navbar</a>
+        <a class="navbar-brand" href="/">ECom.</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
@@ -18,7 +33,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" >
+                    <a class="nav-link" href="/categories" id="navbarDropdown" role="button" >
                         Categories
                     </a>
                 </li>
@@ -29,10 +44,13 @@
                 @endguest
                 {{-- End of conditional display for SignUp --}}
             </ul>
+            
             <form class="d-flex" action="/searchPage">
-                <input class="form-control me-2 searchBox" name="query" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">Search</button>
-            </form>
+                    <div class="input-group">
+                    <input class="form-control searchBox" name="query" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </div>
+                </form>
 
             <ul class="navbar-nav mx-3 mb-2 mb-lg-0 " >
                 
@@ -43,9 +61,9 @@
                 
                     <li class="nav-item ">
                         <div class="d-flex">
-                            <a href="shopping_cart.html" class="btn btn-outline-dark position-relative">
+                            <a href="/cartlist" class="btn btn-outline-dark position-relative">
                                 <i class="fas fa-shopping-bag"></i>
-                                <span id="wishlist-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                                <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $total }}</span>
                             </a>
                         </div>
                     </li>
@@ -53,8 +71,7 @@
                         <div class="d-flex">
                             <a href="/wishlist" class="btn btn-outline-dark position-relative">
                                 <i class="fas fa-heart like-icon"></i>
-                                <span id="cart-count"
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                                <span id="wishlist-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $totalWishlist }}</span>
                             </a>
                         </div>
                     </li>

@@ -33,7 +33,7 @@
     <!-- Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../asset/css/material-dashboard.css">
+    <link rel="stylesheet" href="{{ asset('/asset/css/material-dashboard.css') }}">
     <!-- <link id="pagestyle" href="../assets/css/material-dashboard.css?v=3.2.0" rel="stylesheet" /> -->
 </head>
 
@@ -42,8 +42,8 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
-                <span class="ms-1 text-sm text-dark">ECom.</span>
+                
+                <span class="ms-1 text-sm text-dark fs-1"><strong>ECom.</strong></span>
             </a>
         </div>
         <hr class="horizontal dark mt-0 mb-2">
@@ -131,7 +131,7 @@
     <!-- product add page script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-sWd9JqCjG9S+bA+e/F1l/WvK8L7J3D5zF2L9I8G7cW3A9sP2cR3L8Q1A0r" crossorigin="anonymous"></script>
 
-    <script>
+    <!-- <script>
         var ctx = document.getElementById("chart-bars").getContext("2d");
 
         new Chart(ctx, {
@@ -469,7 +469,7 @@
                 productForm.reset();
             });
         });
-    </script>
+    </script> -->
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

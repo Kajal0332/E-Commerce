@@ -36,189 +36,28 @@
         @foreach ($product as $products)
         <div class="col-md-3">
             <a href="productDetail/{{ $products['id'] }}" class="text-decoration-none text-dark">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon"></i>
-                <img src="{{ $products->image }}" alt="Gucci duffle bag">
-                <h5>{{ $products->product_name }}</h5>
-                <p><strong>{{ $products->price }}</strong></p>
-                <!-- <button class="add-to-cart">Add To Cart</button> -->
-            </div></a>
+                <div class="product-card">
+                    <i class="fa-solid fa-heart heart-icon"></i>
+                    <img src="{{ $products->image }}" alt="{{ $products->product_name }}" />
+                    <h5>{{ $products->product_name }}</h5>
+                    <p><strong>{{ $products->price }}</strong></p>
+                    <!-- <button class="add-to-cart">Add To Cart</button> -->
+                </div>
+            </a>
         </div>
         @endforeach
-        <!-- <div class="col-md-3">
-            <div class="product-card">
-                <span class="discount-badge">-35%</span>
-                <div class="inline">
-                    <i class="fa-solid fa-heart heart-icon add-to-wishlist"></i>
-                </div>
-                <img
-                    src="{{asset('asset/images/bags/Bayan Kıyafet Kombinleri.jpeg')}}"
-                    alt="Gucci duffle bag" />
-                <h5>Gucci duffle bag</h5>
-                <p><s>$1160</s> <strong>$960</strong></p>
-                <button
-                    class="add-to-cart"
-                    data-product-id="1"
-                    data-product-name="Gucci duffle bag"
-                    data-product-price="$960"
-                    data-product-image="asset/images/bags/Bayan Kıyafet Kombinleri.jpeg">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon add-to-wishlist"></i>
-                <img
-                    src="{{asset('asset/images/new arrivel/music-headset.png')}}"
-                    alt="RGB Liquid CPU Cooler" />
-                <h5>black HeadPhone</h5>
-                <p><strong>$660</strong></p>
-                <button
-                    class="add-to-cart"
-                    data-product-id="2"
-                    data-product-name="black HeadPhone"
-                    data-product-price="$660"
-                    data-product-image="asset/images/new arrivel/music-headset.png">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon add-to-wishlist"></i>
-                <img src="{{asset('asset/images/new arrivel/black sandel.jpeg')}}" alt="Gamepad" />
-                <h5>Black Sandel</h5>
-                <p><strong>$750</strong></p>
-                <button
-                    class="add-to-cart"
-                    data-product-id="3"
-                    data-product-name="Black Sandel"
-                    data-product-price="$750"
-                    data-product-image="asset/images/new arrivel/black sandel.jpeg">
-                    Add To Cart
-                </button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon add-to-wishlist"></i>
-                <img
-                    src="{{asset('asset/images/new arrivel/blue winter jedcket.jpeg')}}"
-                    alt="Quilted Satin Jacket" />
-                <h5>Quilted Satin Jacket</h5>
-                <p><strong>$750</strong></p>
-                <button
-                    class="add-to-cart"
-                    data-product-id="4"
-                    data-product-name="Quilted Satin Jacket"
-                    data-product-price="$750"
-                    data-product-image="imges/new arrivel/blue winter jedcket.jpeg">
-                    Add To Cart
-                </button>
-            </div>
-        </div> -->
+
     </div>
-    <!-- <div class="row mt-4">
-        <div class="col-md-3">
-            <div class="product-card">
-                <span class="discount-badge">-35%</span>
-                <i class="fa-solid fa-heart heart-icon"></i>
-                <img src="imges/new arrivel/morden top.jpeg" alt="Gucci duffle bag">
-                <h5>Morden top</h5>
-                <p><strong>$960</strong></p>
-                <button class="add-to-cart">Add To Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon"></i>
-                <img src="imges/new arrivel/Sweatshirt Jacket Coat.jpeg" alt="RGB Liquid CPU Cooler">
-                <h5>RGB Liquid CPU Cooler</h5>
-                <p><strong>$1960</strong></p>
-                <button class="add-to-cart">Add To Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon"></i>
-                <img src="imges/bags/combo bags.jpeg" alt="Gamepad">
-                <h5>GP11 Shooter USB Gamepad</h5>
-                <p><strong>$550</strong></p>
-                <button class="add-to-cart">Add To Cart</button>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="product-card">
-                <i class="fa-solid fa-heart heart-icon"></i>
-                <img src="imges/new arrivel/pink saree.jpeg" alt="Quilted Satin Jacket">
-                <h5>Quilted Satin Jacket</h5>
-                <p><strong>$450</strong></p>
-                <button class="add-to-cart">Add To Cart</button>
-            </div>
-        </div>
-    </div> -->
+
     <div class="button text-center">
-        <a href=""><button class="btn btn-danger my-5 px-5">View more</button></a>
+        <a href="{{ route('allProducts') }}"><button class="btn btn-danger my-5 px-5">View more</button></a>
     </div>
 </div>
 @endsection
 
-@section('cartgeories')
-<div class="mb-5 container">
-    <h2 class="fw-bold slideBodeRed my-5">Categories</h2>
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/Kurti set.jpeg" alt="" />
-                <p class="px-4">Kurti</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/Briide pink lehenga.jpeg" alt="" />
-                <p class="px-4">Lehenga</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/wide jeans.jpeg" alt="" />
-                <p class="px-4">Jeans</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/morden top.jpeg" alt="" />
-                <p class="px-4">Morden tops</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/pink saree.jpeg" alt="" />
-                <p class="px-4">Saree</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/gym.jpeg" alt="" />
-                <p class="px-4">GYM</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/goldenshoes.jpeg" alt="" />
-                <p class="px-4">shoes</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/bags.jpeg" alt="" />
-                <p class="px-4">Bags</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/music-headset.png" alt="" />
-                <p class="px-4">Music</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/books.jpg" alt="" />
-                <p class="px-4">Books</p>
-            </div>
-            <div class="col-md-2 women-cloths-category">
-                <img src="imges/new arrivel/makeup.png" alt="" />
-                <p class="px-4">Makeup</p>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<!-- i have to add some styling in the whishlist button and buy now button want to working -->
 
-@section('bags')
+<!-- @section('bags')
 <div class="container product-card-section">
     <h2 class="fw-bold slideBodeRed my-5">Bags</h2>
     <div class="row mt-4">
@@ -264,7 +103,7 @@
         <a href=""><button class="btn btn-danger my-5 px-5">View more</button></a>
     </div>
 </div>
-@endsection
+@endsection -->
 
 @section('shut')
 <div class="container mb-5">

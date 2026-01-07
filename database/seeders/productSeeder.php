@@ -1,10 +1,11 @@
 <?php
 
 namespace Database\Seeders;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class productSeeder extends Seeder
 {
@@ -13,11 +14,18 @@ class productSeeder extends Seeder
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
+
+        // Perform your truncate/delete
         DB::table('products')->truncate();
-        //
+        DB::table('wishlists')->truncate();
+        DB::table('carts')->truncate();
+
+        // Re-enable them!
+        Schema::enableForeignKeyConstraints();
         $product = DB::table('products')->insert([
             [
-                
+
                 'product_name' => 'LG TV',
                 'price' => '34500',
                 'image' => 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5679/5679628ld.jpg',
@@ -53,6 +61,5 @@ class productSeeder extends Seeder
                 'description' => 'Beautiful ppink child wear frok',
             ]
         ]);
-
     }
 }
