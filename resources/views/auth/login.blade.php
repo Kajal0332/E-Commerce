@@ -20,7 +20,7 @@
                     {{-- Display general login errors (e.g., invalid credentials) --}}
                     @if ($errors->has('email') || $errors->has('password'))
                     <div class="alert alert-danger">
-                        Invalid credentials. Please try again.
+                        Invalid credential=s. Please try again.
                     </div>
                     @endif
                     {{-- OR more specific error for `email` if it's the identifier --}}

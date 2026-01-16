@@ -24,13 +24,8 @@ class AdProductController extends Controller
 
 
     /**
-     * Show the form for creating a new product.
-     * (This method would likely fetch categories for a dropdown field.)
+     * Store a newly created product in storage.
      */
-    
-
-
-    // Handles the form submission to save a new product
     public function store(Request $request)
     {
         // Validate base fields first

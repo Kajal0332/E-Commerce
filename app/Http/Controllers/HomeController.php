@@ -31,15 +31,4 @@ class HomeController extends Controller
         // return view('home');
     }
 
-
-    // public function show($id)
-    // {
-    //     // Find the product by ID or show 404 if not found
-    //     $product = Product::findOrFail($id);
-
-    //     // Return a new view (you will need to create this file)
-    //     return view('product-detail', compact('product'));
-    // }
-
-
 }

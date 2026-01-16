@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use Illuminate\\Model\wishlists;
 
 class User extends Authenticatable
 {
@@ -25,6 +23,10 @@ class User extends Authenticatable
         'phone_number', // Add this if you have it
         'password',
     ];
+    public function user()
+{
+    return $this->hasMany(Order::class);
+}
 
     /**
      * The attributes that should be hidden for serialization.

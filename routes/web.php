@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\adminDeshboardController; // Import your controll
 use App\Http\Controllers\Admin\AdProductController; // Import your controller
 use App\Http\Controllers\Auth\RegisterController; // Import your controller
 use App\Http\Controllers\Auth\LoginController; // Import your LoginController
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AllProductController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserProfileController; // Create this controller
@@ -81,7 +80,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::put('/adminProduct/{id}', [AdProductController::class, 'update'])->name('product.update');
     Route::delete('/adminProduct/{id}', [AdProductController::class, 'destroy'])->name('product.destroy'); 
     // All products listing
-    Route::get('/all-products', [AllProductController::class, 'index'])->name('allProducts');    
+    Route::get('/all-products', [AllProductController::class, 'index'])->name('allProducts');
+    Route::get('/admin/orders', [adminDeshboardController::class, 'order_list'])->name('allOrders');
+    Route::post('/checkout-cart', [ProductController::class, 'orderNow'])->name('orderNow');  
+
 });
 
 // Route for the user profile page (often protected by middleware)
@@ -109,6 +111,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/categories', [ProductController::class, 'categoriesPage'])->name('categories');
         Route::post('/cate_gories', [ProductController::class, 'toggleCategories'])->name('cate_gories');
         Route::get('/checkout', [ProductController::class, 'checkoutPage'])->name('checkout');
+        Route::post('/order-detail', [ProductController::class, 'order_detail_page'])->name('order.detail.page');
     });
 
 // routes/web.php

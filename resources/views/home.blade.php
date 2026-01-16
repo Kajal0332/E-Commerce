@@ -55,8 +55,6 @@
 </div>
 @endsection
 
-<!-- i have to add some styling in the whishlist button and buy now button want to working -->
-
 <!-- @section('bags')
 <div class="container product-card-section">
     <h2 class="fw-bold slideBodeRed my-5">Bags</h2>

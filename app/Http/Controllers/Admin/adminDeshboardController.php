@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
 use Intervention\Image\Encoders\JpegEncoder;
-
+use App\Models\Order;
 class adminDeshboardController extends Controller
 {
     //
@@ -102,5 +102,10 @@ class adminDeshboardController extends Controller
         $img->cover(124, 124);
         $img->encode(new JpegEncoder(quality: 90));
         $img->save($destinationPath . '/' . $imageName);
+    }
+    public function order_list()
+    {
+        $orders = Order::orderBy('created_at', 'DESC')->paginate(15);
+        return view('admin/orderPage', compact('orders'));
     }
 }

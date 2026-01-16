@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active bg-gradient-dark text-white" href="../pages/dashboard.html">
+                    <a class="nav-link active text-dark" href="{{ route('adminDeshboard') }}    ">
                         <i class="material-symbols-rounded opacity-5">dashboard</i>
                         <span class="nav-link-text ms-1">Dashboard</span>
                     </a>
@@ -61,12 +61,7 @@
                         <span class="nav-link-text ms-1">Our Products</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="../pages/billing.html">
-                        <i class="material-symbols-rounded opacity-5">receipt_long</i>
-                        <span class="nav-link-text ms-1">Our Customers</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="{{ route('adminCategory') }}">
                         <i class="material-symbols-rounded opacity-5">receipt_long</i>
@@ -74,18 +69,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="../pages/virtual-reality.html">
+                    <a class="nav-link text-dark" href="{{ route('allOrders') }}">
                         <i class="material-symbols-rounded opacity-5">view_in_ar</i>
                         <span class="nav-link-text ms-1">Our Orders</span>
                     </a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-dark" href="../pages/rtl.html">
-                        <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-                        <span class="nav-link-text ms-1">User Pages</span>
-                    </a>
-                </li> -->
-                
+                </li>                
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Account pages</h6>
                 </li>
